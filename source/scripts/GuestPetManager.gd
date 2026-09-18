@@ -34,7 +34,7 @@ extends Node
 var current_guest_pet_resource = null
 var pet_introduction_ui = null
 var pet_outro_ui = null
-var HOURS_PER_DAY = 24
+var HOURS_PER_DAY = 20
 
 # Dictionary storing the exact day, hour, and minute when the guest pet's stay ends.
 var pet_exit_time = { "day": 0, "hour": 0, "minute": 0 }
@@ -125,8 +125,8 @@ func introduce_guest_pet():
 	# Pick a random pet species from the guest resources array.
 	current_guest_pet_resource = guest_pet_resources[randi() % guest_pet_resources.size()]
 	
-	# Assign random stay duration between 1 and 12 hours.
-	stay_duration_hours = randi_range(1, 12)
+	# Assign random stay duration between 1 and 10 hours.
+	stay_duration_hours = randi_range(1, 10)
 	set_pet_exit_time()
 	print('exit time:', pet_exit_time)
 	
@@ -225,6 +225,6 @@ func get_star_rating(average_stats):
 
 # Calculates coin payout based on stay length and star rating performance (3 stars = baseline 100%).
 func calculate_coins_reward(star_rating):
-	var precentage_per_star = 25
+	var precentage_per_star = 20
 	var reward = int(stay_duration_hours * (1 + (star_rating - 3) * precentage_per_star / 100))
 	return reward
