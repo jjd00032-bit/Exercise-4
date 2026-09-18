@@ -30,7 +30,7 @@ var poop_counter = 0
 
 # Maximum action limits before negative consequences happen (like overfeeding making the pet sick).
 var feed_limit = 4
-var pet_limit = 3
+var pet_limit = 10 # CHANGE - raised pet limit
 
 # ==========================================
 # SIGNALS
@@ -177,7 +177,7 @@ func petting():
 		
 	# Normal successful petting.
 	reaction_popup('love')
-	pet.pet_stats.happiness += 15
+	pet.pet_stats.happiness += 5 # CHANGE - lowered happiness amount per pet
 	pet.gain_experience(2)
 
 func clean():
@@ -194,11 +194,13 @@ func clean():
 	# Reset hygiene back to max (100).
 	pet.pet_stats.hygiene = 100
 	pet.gain_experience(1)
+	pet_counter -= 3 # CHANGE - cleaning decreases pet counter
 
 func play():
 	pet.pet_stats.fun += 25
 	pet.pet_stats.tiredness += 5
 	pet.gain_experience(1)
+	pet_counter -= 2 # CHANGE - playing decreases pet counter
 
 func socialize():
 	pet.pet_stats.social += 25
@@ -215,6 +217,7 @@ func toggle_sleep():
 	# Toggle state logic.
 	if pet.state == pet.PetState.SLEEPING:
 		pet.state = pet.PetState.IDLE
+		pet_counter = 0 # CHANGE - sleeping resets pet counter
 	else:
 		pet.state = pet.PetState.SLEEPING
 		
