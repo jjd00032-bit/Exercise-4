@@ -53,14 +53,62 @@ var state: PetState = PetState.IDLE
 # ==========================================
 var experience = 0
 var collected_experience = 0
+var speed := 150.0
 @export var experience_level = 1
 # Calculates how much XP is needed for the NEXT level right when the pet is created.
 var experience_required = get_required_experience(experience_level + 1)
 
 # _physics_process runs constantly (usually 60 times a second). 
 # It's normally used for movement/gravity, but here it's just updating debug text.
+
+# Feature Branch Edit: Added by Madeleine Banaszak for Assignment 2
+@onready var exercise_bar = null
+var exercise_value := 0.0
+var exercise_fill_rate := 20.0
+var exercise_decay_rate := 10.0
+
+func _ready():
+	call_deferred("_find_exercise_bar")
+	
+func _find_exercise_bar():
+	exercise_bar = get_tree().get_root().get_node("MainScene/StatusUI/HBoxContainer/VBoxContainer/ExerciseBar")	
+
 func _physics_process(_delta):
 	# Converts the current state number (like 0) back into its text name (like "IDLE") for debugging
+	var direction := 0
+
+	# Movement input
+	if Input.is_action_pressed("move_left"):
+		direction = -1
+	elif Input.is_action_pressed("move_right"):
+		direction = 1
+	else:
+		direction = 0
+
+	# Apply movement
+	velocity.x = direction * speed
+	move_and_slide()
+
+	# Flip sprite
+	if direction == -1:
+		sprite.flip_h = true
+	elif direction == 1:
+		sprite.flip_h = false
+	
+	# Fill when moving, drain when idle
+	if direction != 0:
+		exercise_value += exercise_fill_rate * _delta
+	else:
+		exercise_value -= exercise_decay_rate * _delta
+
+	# Clamp between 0 and 100
+	exercise_value = clamp(exercise_value, 0, 100)
+
+	# Update UI bar
+	if exercise_bar:
+		exercise_bar.value = exercise_value
+
+	# Update debug label
 	petDebugLabel.text = PetState.keys()[state]
 
 # ==========================================
