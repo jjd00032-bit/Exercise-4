@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="petResource" load_steps=3 format=3 uid="uid://m1hfx8b3e4ks"]
+[gd_resource type="Resource" script_class="petResource" format=3 uid="uid://m1hfx8b3e4ks"]
 
-[ext_resource type="Script" path="res://source/actors/pet/petResourceBase.gd" id="1_1dfvv"]
+[ext_resource type="Script" uid="uid://cfbkr2xdkawqo" path="res://source/actors/pet/petResourceBase.gd" id="1_1dfvv"]
 [ext_resource type="Texture2D" uid="uid://bhfjprgp4pnof" path="res://assets/img/Pets/capybara.png" id="2_ob2jw"]
 
 [resource]
