@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="petResource" load_steps=3 format=3 uid="uid://bolm6sus7rm6k"]
+
+[ext_resource type="Script" path="res://source/actors/pet/petResourceBase.gd" id="1_2kgeb"]
+[ext_resource type="Texture2D" uid="uid://byedsvlx673ru" path="res://assets/img/Pets/monki.png" id="2_7mcrh"]
+
+[resource]
+script = ExtResource("1_2kgeb")
+animal = 0
+texture = ExtResource("2_7mcrh")
