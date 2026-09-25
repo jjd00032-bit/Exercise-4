@@ -9,7 +9,7 @@ class_name petResource
 # An enum (enumeration) creates a list of named values.
 # Godot stores these internally as numbers (Monkey = 0, Capybara = 1),
 # but enums let you select them by name in the Inspector panel.
-enum AnimalType { Monkey, Capybara }
+enum AnimalType { Monkey, Capybara, Calcifer }
 
 # ==========================================
 # EXPORTED DATA PROPERTIES
